@@ -1,50 +1,6 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	function webpackJsonpCallback(data) {
-/******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1];
-/******/
-/******/
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
-/******/
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/
-/******/ 	};
-/******/
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 	// Promise = chunk loading, 0 = chunk loaded
-/******/ 	var installedChunks = {
-/******/ 		"index": 0
-/******/ 	};
-/******/
-/******/
-/******/
-/******/ 	// script path function
-/******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"print":"print"}[chunkId]||chunkId) + ".bundle.js"
-/******/ 	}
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -70,64 +26,6 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
-/******/ 		var promises = [];
-/******/
-/******/
-/******/ 		// JSONP chunk loading for javascript
-/******/
-/******/ 		var installedChunkData = installedChunks[chunkId];
-/******/ 		if(installedChunkData !== 0) { // 0 means "already installed".
-/******/
-/******/ 			// a Promise means "currently loading".
-/******/ 			if(installedChunkData) {
-/******/ 				promises.push(installedChunkData[2]);
-/******/ 			} else {
-/******/ 				// setup Promise in chunk cache
-/******/ 				var promise = new Promise(function(resolve, reject) {
-/******/ 					installedChunkData = installedChunks[chunkId] = [resolve, reject];
-/******/ 				});
-/******/ 				promises.push(installedChunkData[2] = promise);
-/******/
-/******/ 				// start chunk loading
-/******/ 				var script = document.createElement('script');
-/******/ 				var onScriptComplete;
-/******/
-/******/ 				script.charset = 'utf-8';
-/******/ 				script.timeout = 120;
-/******/ 				if (__webpack_require__.nc) {
-/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
-/******/ 				}
-/******/ 				script.src = jsonpScriptSrc(chunkId);
-/******/
-/******/ 				onScriptComplete = function (event) {
-/******/ 					// avoid mem leaks in IE.
-/******/ 					script.onerror = script.onload = null;
-/******/ 					clearTimeout(timeout);
-/******/ 					var chunk = installedChunks[chunkId];
-/******/ 					if(chunk !== 0) {
-/******/ 						if(chunk) {
-/******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
-/******/ 							var realSrc = event && event.target && event.target.src;
-/******/ 							var error = new Error('Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')');
-/******/ 							error.type = errorType;
-/******/ 							error.request = realSrc;
-/******/ 							chunk[1](error);
-/******/ 						}
-/******/ 						installedChunks[chunkId] = undefined;
-/******/ 					}
-/******/ 				};
-/******/ 				var timeout = setTimeout(function(){
-/******/ 					onScriptComplete({ type: 'timeout', target: script });
-/******/ 				}, 120000);
-/******/ 				script.onerror = script.onload = onScriptComplete;
-/******/ 				document.head.appendChild(script);
-/******/ 			}
-/******/ 		}
-/******/ 		return Promise.all(promises);
-/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -180,16 +78,6 @@
 /******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
-/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
-/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-/******/ 	jsonpArray.push = webpackJsonpCallback;
-/******/ 	jsonpArray = jsonpArray.slice();
-/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
-/******/ 	var parentJsonpFunction = oldJsonpFunction;
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -286,7 +174,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sourceFetch.js */ \"./src/sourceFetch.js\");\n/* harmony import */ var _newssourceSelectComponent_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newssourceSelectComponent.js */ \"./src/newssourceSelectComponent.js\");\n/* harmony import */ var _newssourceComponent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newssourceComponent.js */ \"./src/newssourceComponent.js\");\n\n\n\n\n\nclass NewsAppConent {\n  constructor() {\n    this.newssourceComponentClass = new _newssourceComponent_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"](this);\n    this.newssourceSelectComponent = new _newssourceSelectComponent_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"](this);\n  }\n\n  intialize() {\n    const sourceSelectBox = document.getElementById(\"newsSource\");\n    sourceSelectBox.addEventListener(\"click\", event => {\n      _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.newsCategory = event.target.value;\n    });\n    const newsBtn = document.getElementById(\"newsSourceBtn\");\n    newsBtn.addEventListener(\"click\", () => {\n      _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.urlConstructor.newsCategory = sourceSelectBox.value;\n      let url = _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.urlConstructor.url + _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.urlConstructor.newsCategory + _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.urlConstructor.apiKey;\n      this.newssourceSelectComponent.fetch(url).then(value => {\n        this.newssourceSelectComponent.render(value);\n      });\n      __webpack_require__.e(/*! import() | print */ \"print\").then(__webpack_require__.t.bind(null, /*! ./print.js */ \"./src/print.js\", 7)).then(mod => {\n        console.log(mod);\n      });\n    });\n    this.newsSource = this.newssourceComponentClass.fetch().then(value => {\n      this.newssourceComponentClass.render(value);\n    });\n  }\n\n}\n\nconst intializeFunctions = new NewsAppConent();\nintializeFunctions.intialize();\n\n//# sourceURL=webpack:///./src/intializer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sourceFetch.js */ \"./src/sourceFetch.js\");\n/* harmony import */ var _newssourceSelectComponent_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newssourceSelectComponent.js */ \"./src/newssourceSelectComponent.js\");\n/* harmony import */ var _newssourceComponent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newssourceComponent.js */ \"./src/newssourceComponent.js\");\n\n\n\n\nvar PROXY = new _newssourceComponent_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"](new _newssourceSelectComponent_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]());\nconst url = \"\";\nPROXY.get(url);\nPROXY.NewssourceSelectComponent();\nPROXY.NewssourceComponent(); // class NewsAppConent {\n//   constructor() {\n//     this.newssourceComponentClass = new NewssourceComponent(this);\n//     this.newssourceSelectComponent = new NewssourceSelectComponent(this);\n//   }\n//   intialize() {\n//     const sourceSelectBox = document.getElementById(\"newsSource\");\n//     sourceSelectBox.addEventListener(\"click\", event => {\n//       urlConstructor.newsCategory = event.target.value;\n//     });\n//     const newsBtn = document.getElementById(\"newsSourceBtn\");\n//     newsBtn.addEventListener(\"click\", () => {\n//       urlConstructor.urlConstructor.newsCategory = sourceSelectBox.value;\n//       let url =\n//         urlConstructor.urlConstructor.url +\n//         urlConstructor.urlConstructor.newsCategory +\n//         urlConstructor.urlConstructor.apiKey;\n//       this.newssourceSelectComponent.fetch(url).then(value => {\n//         this.newssourceSelectComponent.render(value);\n//       });\n//       import(/* webpackChunkName: \"print\" */ \"./print.js\").then(mod => {\n//         console.log(mod);\n//       });\n//     });\n//     this.newsSource = this.newssourceComponentClass.fetch().then(value => {\n//       this.newssourceComponentClass.render(value);\n//     });\n//   }\n// }\n// const intializeFunctions = new NewsAppConent();\n// intializeFunctions.intialize();\n\n//# sourceURL=webpack:///./src/intializer.js?");
 
 /***/ }),
 
@@ -298,7 +186,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _con
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return NewssourceComponent; });\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sourceFetch.js */ \"./src/sourceFetch.js\");\n\n\nclass NewssourceComponent extends _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"] {\n  constructor(data) {\n    super();\n    this.httpurl = _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.urlOnload.url + _config_js__WEBPACK_IMPORTED_MODULE_0___default.a.urlOnload.apiKey;\n  }\n\n  async fetch(httpurl) {\n    return await super.fetch(this.httpurl);\n  }\n\n  render(data) {\n    const sourceSelectBox = document.getElementById(\"newsSource\");\n    data.sources.map(({\n      id\n    }, index) => {\n      const selectOptions = document.createElement(\"option\");\n      selectOptions[index] += selectOptions.text = id;\n      sourceSelectBox.appendChild(selectOptions);\n    });\n  }\n\n}\n\n//# sourceURL=webpack:///./src/newssourceComponent.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return proxyClass; });\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sourceFetch.js */ \"./src/sourceFetch.js\");\n\n\nclass proxyClass {\n  constructor(service) {\n    this.service = service;\n  }\n\n  get(req) {\n    this.service.get(url);\n  }\n\n  post(req) {\n    this.service.post(req);\n  }\n\n  log() {\n    this.service.log();\n  }\n\n} // export default class NewssourceComponent extends ApiFetcher {\n//   constructor(data) {\n//     super();\n//     this.httpurl =\n//       urlConstructor.urlOnload.url + urlConstructor.urlOnload.apiKey;\n//   }\n//   async fetch(httpurl) {\n//     return await super.fetch(this.httpurl);\n//   }\n//   render(data) {\n//     const sourceSelectBox = document.getElementById(\"newsSource\");\n//     data.sources.map(({ id }, index) => {\n//       const selectOptions = document.createElement(\"option\");\n//       selectOptions[index] += selectOptions.text = id;\n//       sourceSelectBox.appendChild(selectOptions);\n//     });\n//   }\n// }\n\n//# sourceURL=webpack:///./src/newssourceComponent.js?");
 
 /***/ }),
 
@@ -310,7 +198,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return NewssourceSelectComponent; });\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sourceFetch.js */ \"./src/sourceFetch.js\");\n\n\nclass NewssourceSelectComponent extends _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"] {\n  constructor(data) {\n    super();\n  }\n\n  async fetch(httpurl) {\n    return await super.fetch(httpurl);\n  }\n\n  render(data) {\n    const elementId = document.getElementById(\"newsDetails\");\n    let returnHtml = \"\",\n        uniqueVal = [];\n\n    if (data.status === \"error\") {\n      returnHtml = `<div id=\"error\">${data.message}</div>`;\n    } else {\n      data.articles.map(({\n        author,\n        title,\n        description,\n        publishedAt,\n        url,\n        urlToImage\n      }, index) => {\n        uniqueVal = index === 0 ? `<h1>${author}</h1>` : \"\";\n        returnHtml += `${uniqueVal}<div class=\"newsTitle\">${title}</div><div class=\"newsDescription\">${description}</div><div class=\"publishDate\">${publishedAt}</div><div class=\"imageContainer\"><a href=\"${url}\" target=\"_blank\"><img class =\"imageLazy\" src=${urlToImage} /></a></div>`;\n      });\n    }\n\n    elementId.innerHTML = returnHtml;\n  }\n\n}\n\n//# sourceURL=webpack:///./src/newssourceSelectComponent.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return WebService; });\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sourceFetch.js */ \"./src/sourceFetch.js\");\n\n\nclass WebService extends _sourceFetch_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"] {} // export default class NewssourceSelectComponent extends ApiFetcher {\n//   constructor(data) {\n//     super();\n//   }\n//   async fetch(httpurl) {\n//     return await super.fetch(httpurl);\n//   }\n//   render(data) {\n//     const elementId = document.getElementById(\"newsDetails\");\n//     let returnHtml = \"\",\n//       uniqueVal = [];\n//     if (data.status === \"error\") {\n//       returnHtml = `<div id=\"error\">${data.message}</div>`;\n//     } else {\n//       data.articles.map(\n//         (\n//           { author, title, description, publishedAt, url, urlToImage },\n//           index\n//         ) => {\n//           uniqueVal = index === 0 ? `<h1>${author}</h1>` : \"\";\n//           returnHtml += `${uniqueVal}<div class=\"newsTitle\">${title}</div><div class=\"newsDescription\">${description}</div><div class=\"publishDate\">${publishedAt}</div><div class=\"imageContainer\"><a href=\"${url}\" target=\"_blank\"><img class =\"imageLazy\" src=${urlToImage} /></a></div>`;\n//         }\n//       );\n//     }\n//     elementId.innerHTML = returnHtml;\n//   }\n// }\n\n//# sourceURL=webpack:///./src/newssourceSelectComponent.js?");
 
 /***/ }),
 
@@ -318,11 +206,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!****************************!*\
   !*** ./src/sourceFetch.js ***!
   \****************************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return ApiFetcher; });\n/* harmony import */ var _errorHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./errorHandler.js */ \"./src/errorHandler.js\");\n\nclass ApiFetcher {\n  async fetch(url) {\n    try {\n      let response = await fetch(url);\n      return await response.json();\n      throw new _errorHandler_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    } catch (error) {\n      alert(error.message);\n    }\n  }\n\n}\n\n//# sourceURL=webpack:///./src/sourceFetch.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _errorHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./errorHandler.js */ \"./src/errorHandler.js\");\n // export default class ApiFetcher {\n//   async fetch(url) {\n//     try {\n//       let response = await fetch(url);\n//       return await response.json();\n//       throw new CustomError();\n//     } catch (error) {\n//       alert(error.message);\n//     }\n//   }\n// }\n\nclass ServiceInterface {\n  constructor() {\n    this.requests = [];\n  }\n\n  async get(url) {\n    try {\n      let response = await fetch(url);\n      this.data = await response.json();\n      throw new _errorHandler_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    } catch (error) {\n      alert(error.message);\n    }\n  }\n\n  post(req) {\n    this.requests.push(req);\n  }\n\n  NewssourceSelectComponent(data) {\n    const sourceSelectBox = document.getElementById(\"newsSource\");\n    data.sources.map(({\n      id\n    }, index) => {\n      const selectOptions = document.createElement(\"option\");\n      selectOptions[index] += selectOptions.text = id;\n      sourceSelectBox.appendChild(selectOptions);\n    });\n  }\n\n  NewssourceComponent(data) {\n    const elementId = document.getElementById(\"newsDetails\");\n    let returnHtml = \"\",\n        uniqueVal = [];\n\n    if (data.status === \"error\") {\n      returnHtml = `<div id=\"error\">${data.message}</div>`;\n    } else {\n      data.articles.map(({\n        author,\n        title,\n        description,\n        publishedAt,\n        url,\n        urlToImage\n      }, index) => {\n        uniqueVal = index === 0 ? `<h1>${author}</h1>` : \"\";\n        returnHtml += `${uniqueVal}<div class=\"newsTitle\">${title}</div><div class=\"newsDescription\">${description}</div><div class=\"publishDate\">${publishedAt}</div><div class=\"imageContainer\"><a href=\"${url}\" target=\"_blank\"><img class =\"imageLazy\" src=${urlToImage} /></a></div>`;\n      });\n    }\n\n    elementId.innerHTML = returnHtml;\n  }\n\n}\n\n//# sourceURL=webpack:///./src/sourceFetch.js?");
 
 /***/ }),
 

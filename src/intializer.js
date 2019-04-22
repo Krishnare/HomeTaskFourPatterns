@@ -1,41 +1,27 @@
 import urlConstructor from "./config.js";
-import ApiFetcher from "./sourceFetch.js";
-import NewssourceSelectComponent from "./newssourceSelectComponent.js";
-import NewssourceComponent from "./newssourceComponent.js";
+import sourceFetch from "./sourceFetch.js";
+import sourceFetchService from "./SourceFetchService.js";
+import proxyClass from "./newssourceComponent.js";
 
-class NewsAppConent {
-  constructor() {
-    this.newssourceComponentClass = new NewssourceComponent(this);
-    this.newssourceSelectComponent = new NewssourceSelectComponent(this);
-  }
-  intialize() {
-    const sourceSelectBox = document.getElementById("newsSource");
+function init_Proxy() {
+  const url = urlConstructor.urlOnload.url + urlConstructor.urlOnload.apiKey;
+ let PROXY = new proxyClass(new sourceFetchService());
+  PROXY.get(url).then(value => {
+    PROXY.NewssourceSelectComponent(value);
+  });
 
-    sourceSelectBox.addEventListener("click", event => {
-      urlConstructor.newsCategory = event.target.value;
-    });
+  const newsBtn = document.getElementById("newsSourceBtn");
+  const sourceSelectBox = document.getElementById("newsSource");
+  newsBtn.addEventListener("click", () => {
+    urlConstructor.urlConstructor.newsCategory = sourceSelectBox.value;
+    let url =
+      urlConstructor.urlConstructor.url +
+      urlConstructor.urlConstructor.newsCategory +
+      urlConstructor.urlConstructor.apiKey;
 
-    const newsBtn = document.getElementById("newsSourceBtn");
-    newsBtn.addEventListener("click", () => {
-      urlConstructor.urlConstructor.newsCategory = sourceSelectBox.value;
-      let url =
-        urlConstructor.urlConstructor.url +
-        urlConstructor.urlConstructor.newsCategory +
-        urlConstructor.urlConstructor.apiKey;
-
-      this.newssourceSelectComponent.fetch(url).then(value => {
-        this.newssourceSelectComponent.render(value);
+      PROXY.get(url).then(value => {
+        PROXY.NewssourceComponent(value);
       });
-      import(/* webpackChunkName: "print" */ "./print.js").then(mod => {
-        console.log(mod);
-      });
-    });
-    this.newsSource = this.newssourceComponentClass.fetch().then(value => {
-      this.newssourceComponentClass.render(value);
-    });
-  }
+  });
 }
-
-const intializeFunctions = new NewsAppConent();
-
-intializeFunctions.intialize();
+init_Proxy();
