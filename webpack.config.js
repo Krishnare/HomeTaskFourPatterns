@@ -7,11 +7,16 @@ module.exports = {
     mode: 'development',
     entry: {
       index: './src/index.js',
-      another: './src/print.js'
+      another: './src/lazyload.js'
     },
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist')
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -1,4 +1,5 @@
 export default class CustomError extends Error {
-    constructor() {
-    }
+    constructor(error){
+      alert(error.message,'TESTSTETEST');
   }
+}
