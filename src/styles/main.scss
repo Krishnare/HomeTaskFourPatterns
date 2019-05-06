@@ -50,3 +50,32 @@ body {
 		width: 90%;
 	}
 }
+.errorPopupClass{
+	width: 400px;
+	height: 150px;
+	position: absolute;
+	left: 33%;
+	top:30%;
+	border: 1px solid #CCC;
+	z-index: 999;
+	background-color: #FFF;
+	border-radius: 10px;
+	padding:20px;
+}
+.close{
+	position: absolute;
+	right: 10px;
+	top:10px;
+	color: #000;
+	cursor: pointer;
+	font-size: 20px;
+}
+#shadowPopup{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	top: 0;
+	left: 0;
+	opacity: 0.3;
+}

@@ -1,30 +1,25 @@
 import createTypeFuncIntials from "./index.js";
 import renderHtml from "./newssourceComponent.js";
-import SourceFetch from "./sourceFetch.js";
-import urlConstructor from "./config.js";
+import SourceFetcher from "./sourceFetch.js";
+import urlConstructor from "./config.json";
+import ErrorPopupHandler from "./errorHandler.js";
 
 class intilizerClass {
   constructor() {
-    this.sourceFetches = new SourceFetch();
+    this.sourceFetches = new SourceFetcher();
     this.renderHTML = new renderHtml();
     this.url = "";
   }
   run() {
-    const newsBtn = document.getElementById("newsSourceBtn");
-    newsBtn.addEventListener("click", () => {
-      import(/* webpackChunkName: "lazyload" */ "./lazyload.js")
-        .then(mod => {})
-        .then(value => {
-          console.log(value);
-        });
+    const newsBtn = document.getElementById("newsSource");
+    newsBtn.addEventListener("change", () => {
+      import(/* webpackChunkName: "lazyload" */ "./lazyload.js");
     });
-    this.httpurl =
-      urlConstructor.urlOnload.url + urlConstructor.urlOnload.apiKey;
-    this.sourceFetches.get(this.httpurl).then(value => {
-      this.renderHTML.NewssourceSelectComponent(value);
-    }).catch (error =>{
-        new CustomError(error);
-      });
+    this.httpurl = `${urlConstructor.urlConstructor[0].apiURL}${
+      urlConstructor.urlConstructor[4].apiSources
+    }${urlConstructor.urlConstructor[3].apiKey}`;
+
+    this.sourceFetches.get(this.httpurl);
   }
 }
 
