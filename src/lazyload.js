@@ -12,11 +12,11 @@ class lazyload {
     const newsBtn = document.getElementById("newsSourceBtn");
     const sourceSelectBox = document.getElementById("newsSource");
     sourceSelectBox.addEventListener("change", event => {
-      urlConstructor.urlConstructor.sourceID = event.target.value;
+      let selectCurrentVal = urlConstructor.urlConstructor.sourceID = event.target.value;
       let url =
         urlConstructor.urlConstructor[0].apiURL +
         urlConstructor.urlConstructor[1].articleSource +
-        urlConstructor.urlConstructor[2].sourceID +
+        selectCurrentVal +
         urlConstructor.urlConstructor[3].apiKey;
       this.articlesFetcher.get(url);
     });
