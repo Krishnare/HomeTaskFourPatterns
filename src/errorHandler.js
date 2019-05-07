@@ -31,6 +31,13 @@ export default class errorPopupHandler {
       createDivShadow.remove();
     });
   }
+  static getInstance(){
+    import(/* webpackChunkName: "lazyload" */ './lazyload.js').then(module => {
+      const constructingLoad = module.default;
+      constructingLoad.constructingLoad();
+  }).catch(function(error) {
+    ErrorPopupHandler.openPopup(error)
+  });
+  }
 }
 const ErrorPopupHandler = new errorPopupHandler();
-ErrorPopupHandler;

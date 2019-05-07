@@ -3,12 +3,12 @@ import SourceFetch from "./sourceFetch.js";
 import urlConstructor from "./config.json";
 import errorPopupHandler from "./errorHandler.js";
 
-class lazyload {
+export default class lazyload {
   constructor() {
     this.sourceFetches = new SourceFetch();
-    this.articlesFetcher = new ArticlesFetcher();
   }
-  constructingLoad() {
+  static constructingLoad() {
+    let articlesFetcher = new ArticlesFetcher();
     const newsBtn = document.getElementById("newsSourceBtn");
     const sourceSelectBox = document.getElementById("newsSource");
     sourceSelectBox.addEventListener("change", event => {
@@ -18,10 +18,7 @@ class lazyload {
         urlConstructor.urlConstructor[1].articleSource +
         selectCurrentVal +
         urlConstructor.urlConstructor[3].apiKey;
-      this.articlesFetcher.get(url);
+      articlesFetcher.get(url);
     });
   }
 }
-
-var loader = new lazyload();
-loader.constructingLoad();
