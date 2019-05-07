@@ -9,7 +9,7 @@ export default class SourceFetcher {
       let response = await fetch(url);
       if (response.status === 200) {
         this.data = await response.json();
-        new SourceFetcher().NewssourceSelectComponent(this.data);
+        SourceFetcher.NewssourceSelectComponent(this.data);
       } else {
         await ErrorPopupHandler().openPopup();
       }
@@ -17,7 +17,7 @@ export default class SourceFetcher {
       ErrorPopupHandler().openPopup(error);
     }
   }
-  NewssourceSelectComponent(data) {
+  static NewssourceSelectComponent(data) {
     const sourceSelectBox = document.getElementById("newsSource");
     data.sources.map(({ id }, index) => {
       const selectOptions = document.createElement("option");

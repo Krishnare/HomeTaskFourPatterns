@@ -4,12 +4,8 @@ import urlConstructor from "./config.json";
 import errorPopupHandler from "./errorHandler.js";
 
 export default class lazyload {
-  constructor() {
-    this.sourceFetches = new SourceFetch();
-  }
   static constructingLoad() {
     let articlesFetcher = new ArticlesFetcher();
-    const newsBtn = document.getElementById("newsSourceBtn");
     const sourceSelectBox = document.getElementById("newsSource");
     sourceSelectBox.addEventListener("change", event => {
       let selectCurrentVal = (urlConstructor.urlConstructor.sourceID =

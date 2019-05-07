@@ -3,15 +3,19 @@ $color_concord_approx: '#7d7b7b';
 
 $font_0: 'arial';
 $font_1: 'sans-serif';
-body {
+html, body {
 	font-family: $font_0, $font_1;
 	font-size: 14px;
+	margin: 0;
+	height: 100%;
 }
 .newsContainer {
 	width: 80%;
 	margin: 0 auto;
+	height: auto;
 	h1 {
 		font-size: 2.6em;
+		color: #4674a5;
 	}
 }
 .imageContainer {
@@ -44,7 +48,23 @@ body {
 	border-radius: 10px;
 	border: 1px solid #ccc;
 	font-size: 14px;
+	width:300px;
+	margin: 0 auto;
+    display: block;
 }
+.header{
+	background-color: #7cc1f9;
+    height: 87px;
+    padding: 40px 0 0 0;
+}
+#newsDetails{
+	height: 100%;
+	display: block;
+	border: 1px solid #CCC;
+	max-height: 100%;
+	padding:0 20px;
+}
+
 @media only screen and(min-width: 400px) and(max-width: 768px) {
 	.newsContainer {
 		width: 90%;

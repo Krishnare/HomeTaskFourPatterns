@@ -6,7 +6,7 @@ export default class ArticlesFetcher {
       let response = await fetch(url);
       if (response.status === 200) {
         const data = await response.json();
-        new ArticlesFetcher().NewssourceComponent(data);
+        ArticlesFetcher.NewssourceComponent(data);
       } else {
         await new errorPopupHandler().openPopup();
       }
@@ -14,7 +14,7 @@ export default class ArticlesFetcher {
       new errorPopupHandler().openPopup(error);
     }
   }
-  NewssourceComponent(data) {
+  static NewssourceComponent(data) {
     const elementId = document.getElementById("newsDetails");
     let returnHtml = "",
       uniqueVal = [];
