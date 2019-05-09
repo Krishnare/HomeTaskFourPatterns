@@ -1,24 +1,25 @@
 import "./styles/main.scss";
 import urlConstructor from "./config.json";
 import SourceFetcher from "./sourceFetch.js";
-import ArticlesFetcher from "./newssourceComponent.js";
-import IntilizerClass from "./SourceFetchService.js";
 
-export default class createTypeFuncIntials {
-  static createTypeMethods(type) {
-    let typesofRequest = "";
-    switch (type) {
-      case "Sources":
-        typesofRequest = new SourceFetcher();
-      case "Articles":
-        typesofRequest = new ArticlesFetcher();
-    }
+let httpurl = `${urlConstructor.urlConstructor[0].apiURL}${
+  urlConstructor.urlConstructor[4].apiSources
+}${urlConstructor.urlConstructor[3].apiKey}`;
+
+var handler = {
+  get: function(obj, prop) {
+      if(prop === 'get'){
+          const innerCall = new Proxy(obj, {
+            apply: function(target, thisarg, args){
+                console.log(target.fetch(...args));
+            }
+          })
+        innerCall(httpurl)
+      }
   }
 }
+var proxy = new Proxy(SourceFetcher, handler);
+proxy.get = 'get';
+proxy.get;
 
-export const SourceFetchToMToClass = createTypeFuncIntials.createTypeMethods(
-  "Sources"
-);
-export const renderHtmlToMToClass = createTypeFuncIntials.createTypeMethods(
-  "Articles"
-);
+

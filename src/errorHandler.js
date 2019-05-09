@@ -1,3 +1,5 @@
+import SourceFetcher from './sourceFetch.js';
+
 export default class errorPopupHandler {
   openPopup(error) {
     let errorPopup = document.getElementById("errorPopup");

@@ -1,15 +1,16 @@
 import ErrorPopupHandler from "./errorHandler.js";
-
+import IntilizerClass from "./SourceFetchService.js";
 export default class SourceFetcher {
   constructor() {
     this.data;
   }
-  async get(url) {
+  static async fetch(url) {
     try {
       let response = await fetch(url);
       if (response.status === 200) {
         this.data = await response.json();
         SourceFetcher.NewssourceSelectComponent(this.data);
+        IntilizerClass.run();
       } else {
         await ErrorPopupHandler().openPopup();
       }
