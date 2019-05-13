@@ -34,7 +34,9 @@ export default class ErrorPopup {
     });
   }
   static getInstance() {
-    import(/* webpackChunkName: "lazyload" */ '../src/components/news-articles/controller')
+    import(
+      /* webpackChunkName: "lazyload" */ "../src/components/news-articles/controller"
+    )
       .then(module => {
         const constructingLoad = module.default;
         constructingLoad.constructingLoad();

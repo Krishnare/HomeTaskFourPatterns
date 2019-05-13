@@ -1,1 +1,1 @@
-import '../news-sources/controller'
+import "../news-sources/controller";

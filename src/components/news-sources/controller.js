@@ -16,7 +16,7 @@ var handler = {
       innerCall(httpurl);
     }
   }
-}
+};
 
 var proxy = new Proxy(NewsSourceModel, handler);
 proxy.get = "get";

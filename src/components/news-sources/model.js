@@ -1,7 +1,7 @@
 import ErrorPopup from "../../../src/errorHandler";
 import NewsSourceView from "./views";
 
-export default class  NewsSourceModel {
+export default class NewsSourceModel {
   static async fetch(url) {
     try {
       let response = await fetch(url);

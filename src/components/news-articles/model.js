@@ -1,8 +1,8 @@
 import ErrorPopup from "../../../src/errorHandler";
 import NewsArticleView from "./views";
-import intilizerClass from './intializer'
+import intilizerClass from "./intializer";
 
-export default class  NewsSourceModel {
+export default class NewsSourceModel {
   static async fetch(url) {
     try {
       let response = await fetch(url);
