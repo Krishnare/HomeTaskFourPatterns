@@ -1,7 +1,7 @@
-import SourceFetcher from './sourceFetch.js';
+// import SourceFetcher from './sourceFetch.js';
 
-export default class errorPopupHandler {
-  openPopup(error) {
+export default class ErrorPopup {
+  open(error) {
     let errorPopup = document.getElementById("errorPopup");
     if (!errorPopup) {
       let createDiv = document.createElement("div");
@@ -20,10 +20,10 @@ export default class errorPopupHandler {
       getId.innerText = error.message;
       getId.appendChild(createSpan);
 
-      errorPopupHandler.closePopup();
+      ErrorPopup.close();
     }
   }
-  static closePopup() {
+  static close() {
     const closePopup = document.getElementById("closePopup");
     const getIdErroPopup = document.getElementById("errorPopup");
     let createDivShadow = document.getElementById("shadowPopup");
@@ -34,14 +34,14 @@ export default class errorPopupHandler {
     });
   }
   static getInstance() {
-    import(/* webpackChunkName: "lazyload" */ "./lazyload.js")
+    import(/* webpackChunkName: "lazyload" */ '../src/components/news-articles/controller')
       .then(module => {
         const constructingLoad = module.default;
         constructingLoad.constructingLoad();
       })
       .catch(function(error) {
-        ErrorPopupHandler.openPopup(error);
+        ErrorPopupHandler.open(error);
       });
   }
 }
-const ErrorPopupHandler = new errorPopupHandler();
+const ErrorPopupHandler = new ErrorPopup();

@@ -7,7 +7,7 @@ module.exports = {
     mode: 'development',
     entry: {
       index: './src/index.js',
-      another: './src/lazyload.js'
+      another: './src/components/news-articles/controller.js'
     },
     output: {
       filename: '[name].bundle.js',

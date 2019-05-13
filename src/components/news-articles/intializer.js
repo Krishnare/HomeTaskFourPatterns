@@ -1,9 +1,4 @@
-import createTypeFuncIntials from "./index.js";
-import renderHtml from "./newssourceComponent.js";
-import SourceFetcher from "./sourceFetch.js";
-import urlConstructor from "./config.json";
-import errorPopupHandler from "./errorHandler.js";
-
+import errorPopupHandler from "../../../src/errorHandler";
 
 class intilizerClass {
   run() {
