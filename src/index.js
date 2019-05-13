@@ -8,18 +8,16 @@ let httpurl = `${urlConstructor.urlConstructor[0].apiURL}${
 
 const handler = {
   get: function(obj, prop) {
-      if(prop === 'fetch'){
-          const innerCall = new Proxy(obj, {
-            apply: function(target, thisarg, args){
-                target.fetch(...args)
-            }
-          });
-        innerCall(httpurl)
-      }
+    if (prop === "fetch") {
+      const innerCall = new Proxy(obj, {
+        apply: function(target, thisarg, args) {
+          target.fetch(...args);
+        }
+      });
+      innerCall(httpurl);
+    }
   }
-}
+};
 const proxy = new Proxy(SourceFetcher, handler);
-proxy.fetch = 'fetch';
+proxy.fetch = "fetch";
 proxy.fetch;
-
-

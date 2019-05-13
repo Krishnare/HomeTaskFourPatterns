@@ -3,7 +3,7 @@ import IntilizerClass from "./SourceFetchService.js";
 export default class SourceFetcher {
   static async fetch(url) {
     try {
-      let response = await fetch(url);
+      const response = await fetch(url);
       if (response.status === 200) {
         const data = await response.json();
         SourceFetcher.NewssourceSelectComponent(data);

@@ -1,6 +1,3 @@
-// import createTypeFuncIntials from "./index.js";
-// import renderHtml from "./newssourceComponent.js";
-// import urlConstructor from "./config.json";
 import ErrorPopupHandler from "./errorHandler.js";
 
 class intilizerClass {
@@ -14,9 +11,7 @@ class intilizerClass {
       })
       .catch(function(error) {
         ErrorPopupHandler.getInstance(error);
-        // ErrorPopupHandler.open(error);
       });
-      // ErrorPopup.getInstance();
     });
   }
 }
