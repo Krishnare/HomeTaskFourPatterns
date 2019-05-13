@@ -1,20 +1,18 @@
-import ErrorPopupHandler from "./errorHandler.js";
-
+import ErrorPopup from "./errorHandler.js";
+import IntilizerClass from "./SourceFetchService.js";
 export default class SourceFetcher {
-  constructor() {
-    this.data;
-  }
-  async get(url) {
+  static async fetch(url) {
     try {
-      let response = await fetch(url);
+      const response = await fetch(url);
       if (response.status === 200) {
-        this.data = await response.json();
-        SourceFetcher.NewssourceSelectComponent(this.data);
+        const data = await response.json();
+        SourceFetcher.NewssourceSelectComponent(data);
+        IntilizerClass.run();
       } else {
-        await ErrorPopupHandler().openPopup();
+        await ErrorPopup.open();
       }
     } catch (error) {
-      ErrorPopupHandler().openPopup(error);
+      ErrorPopup.open(error);
     }
   }
   static NewssourceSelectComponent(data) {

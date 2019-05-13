@@ -1,4 +1,4 @@
-import ArticlesFetcher from "./newssourceComponent.js";
+import ArticlesFetcher from "./newsArticlesFetcher";
 import SourceFetch from "./sourceFetch.js";
 import urlConstructor from "./config.json";
 import errorPopupHandler from "./errorHandler.js";
