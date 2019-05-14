@@ -1,9 +1,0 @@
-{
-  "urlConstructor" : [
-    {"apiURL":"https://newsapi.org/v1/"},
-    {"articleSource":"articles?source="},
-    {"sourceID":"bbc-news"},
-    {"apiKey":"&apiKey=720c0314e8b2423eb7e1ffca5a1eeeb1"},
-    {"apiSources":"sources?apiKey="}
-  ]
-}
