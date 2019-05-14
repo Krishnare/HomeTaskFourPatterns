@@ -1,0 +1,101 @@
+
+$color_concord_approx: '#7d7b7b';
+
+$font_0: 'arial';
+$font_1: 'sans-serif';
+html, body {
+	font-family: $font_0, $font_1;
+	font-size: 14px;
+	margin: 0;
+	height: 100%;
+}
+.newsContainer {
+	width: 80%;
+	margin: 0 auto;
+	height: auto;
+	h1 {
+		font-size: 2.6em;
+		color: #4674a5;
+	}
+}
+.imageContainer {
+	width: 100%;
+	margin: 20px 0;
+	img {
+		width: 100%;
+	}
+}
+.newsTitle {
+	margin: 10px 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+.publishDate {
+	font-size: 10px;
+	color: $color_concord_approx;
+	margin: 11px 0;
+}
+#newsSourceBtn{
+	padding: 10px 18px;
+    background-color: #008cff;
+    color: #FFF;
+    border: 1px solid #0350ab;
+	border-radius: 9px;
+	font-size: 14px;
+}
+#newsSource{
+	padding: 10px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	width:300px;
+	margin: 0 auto;
+    display: block;
+}
+.header{
+	background-color: #7cc1f9;
+    height: 87px;
+    padding: 40px 0 0 0;
+}
+#newsDetails{
+	height: 100%;
+	display: block;
+	border: 1px solid #CCC;
+	max-height: 100%;
+	padding:0 20px;
+}
+
+@media only screen and(min-width: 400px) and(max-width: 768px) {
+	.newsContainer {
+		width: 90%;
+	}
+}
+.errorPopupClass{
+	width: 400px;
+	height: 150px;
+	position: absolute;
+	left: 33%;
+	top:30%;
+	border: 1px solid #CCC;
+	z-index: 999;
+	background-color: #FFF;
+	border-radius: 10px;
+	padding:20px;
+}
+.close{
+	position: absolute;
+	right: 10px;
+	top:10px;
+	color: #000;
+	cursor: pointer;
+	font-size: 20px;
+}
+#shadowPopup{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	top: 0;
+	left: 0;
+	opacity: 0.3;
+}
