@@ -11,7 +11,7 @@ const handler = {
     if (prop === "fetch") {
       const innerCall = new Proxy(obj, {
         apply: function(target, thisarg, args) {
-          target.fetch(...args);
+          target.get(...args);
         }
       });
       innerCall(httpurl);

@@ -1,26 +1,20 @@
-import ErrorPopup from "./errorHandler.js";
+import ErrorPopupHandler from "./errorHandler.js";
 import IntilizerClass from "./SourceFetchService.js";
+import NewssourceSelectComponent from './sourceRender';
+
 export default class SourceFetcher {
-  static async fetch(url) {
+  static async get(url) {
     try {
       const response = await fetch(url);
       if (response.status === 200) {
         const data = await response.json();
-        SourceFetcher.NewssourceSelectComponent(data);
+        NewssourceSelectComponent.renderHtml(data);
         IntilizerClass.run();
       } else {
-        await ErrorPopup.open();
+        await ErrorPopupHandler.getInstance();
       }
     } catch (error) {
-      ErrorPopup.open(error);
+      await ErrorPopupHandler.getInstance(error);
     }
-  }
-  static NewssourceSelectComponent(data) {
-    const sourceSelectBox = document.getElementById("newsSource");
-    data.sources.map(({ id }, index) => {
-      const selectOptions = document.createElement("option");
-      selectOptions[index] += selectOptions.text = id;
-      sourceSelectBox.appendChild(selectOptions);
-    });
   }
 }
