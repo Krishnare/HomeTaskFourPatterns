@@ -1,4 +1,4 @@
-export default class NewssourceSelectComponent {
+export default class NewssourceSelectRender {
     static renderHtml(data) {
     const sourceSelectBox = document.getElementById("newsSource");
     data.sources.map(({ id }, index) => {

@@ -1,11 +1,12 @@
-import ArticlesFetcher from "./newsArticlesFetcher";
+import Api from "./sourceFetch";
 import SourceFetch from "./sourceFetch.js";
 import urlConstructor from "./config.json";
 import errorPopupHandler from "./errorHandler.js";
+import NewssourceSelectComponent from "./apiRequest.js";
+import NewsArticleRender from './newsArticleRender'
 
 export default class lazyload {
   static constructingLoad() {
-    let articlesFetcher = new ArticlesFetcher();
     const sourceSelectBox = document.getElementById("newsSource");
     sourceSelectBox.addEventListener("change", event => {
       let selectCurrentVal = (urlConstructor.urlConstructor.sourceID =
@@ -15,7 +16,10 @@ export default class lazyload {
         urlConstructor.urlConstructor[1].articleSource +
         selectCurrentVal +
         urlConstructor.urlConstructor[3].apiKey;
-      articlesFetcher.get(url);
+        Api.get(url)
+        .then((value)=>{
+          NewsArticleRender.renderHtml(value)
+        })
     });
   }
 }

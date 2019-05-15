@@ -1,6 +1,6 @@
 import "./styles/main.scss";
 import urlConstructor from "./config.json";
-import SourceFetcher from "./sourceFetch.js";
+import NewssourceSelectComponent from "./apiRequest.js";
 
 let httpurl = `${urlConstructor.urlConstructor[0].apiURL}${
   urlConstructor.urlConstructor[4].apiSources
@@ -8,16 +8,16 @@ let httpurl = `${urlConstructor.urlConstructor[0].apiURL}${
 
 const handler = {
   get: function(obj, prop) {
-    if (prop === "fetch") {
+    if (prop === "api") {
       const innerCall = new Proxy(obj, {
         apply: function(target, thisarg, args) {
-          target.get(...args);
+          target.fetch(...args);
         }
       });
       innerCall(httpurl);
     }
   }
 };
-const proxy = new Proxy(SourceFetcher, handler);
-proxy.fetch = "fetch";
-proxy.fetch;
+const proxy = new Proxy(NewssourceSelectComponent, handler);
+proxy.api = "api";
+proxy.api;
