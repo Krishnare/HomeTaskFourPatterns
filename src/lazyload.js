@@ -5,6 +5,8 @@ import errorPopupHandler from "./errorHandler.js";
 import NewssourceSelectComponent from "./apiRequest.js";
 import NewsArticleRender from './newsArticleRender'
 
+import proxy from './index'
+
 export default class lazyload {
   static constructingLoad() {
     const sourceSelectBox = document.getElementById("newsSource");
@@ -16,7 +18,8 @@ export default class lazyload {
         urlConstructor.urlConstructor[1].articleSource +
         selectCurrentVal +
         urlConstructor.urlConstructor[3].apiKey;
-        Api.get(url)
+
+        proxy.get(selectCurrentVal)
         .then((value)=>{
           NewsArticleRender.renderHtml(value)
         })

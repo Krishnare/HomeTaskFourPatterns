@@ -1,16 +1,14 @@
 import ErrorPopupHandler from "./errorHandler.js";
 
 export default class Api {
-  static async get(url) {
-    try {
-      const response = await fetch(url);
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        await ErrorPopupHandler.getInstance();
-      }
-    } catch (error) {
-      await ErrorPopupHandler.getInstance(error);
-    }
+  constructor(apiUrl, apiKey) {
+    this.apiUrl = apiUrl;
+    this.apiKey = apiKey;
+  }
+  request(url, method = "GET") {
+    return fetch(`${this.apiUrl}${url}${this.apiKey}`, { method });
+  }
+  get(url) {
+    this.request(url, "GET");
   }
 }

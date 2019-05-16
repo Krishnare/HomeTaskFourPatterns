@@ -1,17 +1,27 @@
 import "./styles/main.scss";
 import urlConstructor from "./config.json";
-import ApiCall from "./apiRequest.js";
+// import ApiCall from "./apiRequest.js";
+import Api from './sourceFetch'
 
-let newsSourceURL = `${urlConstructor.urlConstructor[0].apiURL}${
-  urlConstructor.urlConstructor[4].apiSources
-}${urlConstructor.urlConstructor[3].apiKey}`;
+let baseUrl = urlConstructor.urlConstructor[0].apiURL;
+let apiKey = urlConstructor.urlConstructor[1].apiKey
+// let loadUrl = "https://newsapi.org/v1/sources?apiKey=720c0314e8b2423eb7e1ffca5a1eeeb1"
+console.log(baseUrl, apiKey);
 
 const handler = {
-  apply: function(target, thisArg, argumentsList) {
-    console.log(`Function Logged: API`);
+  get: function(target, name) {
+    console.log(`calling: ${name}`);
+    return target[name]
   }
 };
 
-const proxy = new Proxy(ApiCall, handler);
-proxy();
-proxy.fetch(newsSourceURL);
+const api = new Api(baseUrl, apiKey);
+const onloadApi = new Api(baseUrl, apiKey)
+export const proxy = new Proxy(api, handler);
+export const onLoadProxy = new Proxy(onloadApi, handler);
+
+// alert(proxy.get());
+// proxy.apiUrl = urlConstructor.urlConstructor[0].apiURL;
+// proxy.sourceID = urlConstructor.urlConstructor[4].apiSources;
+// proxy.apiKey = urlConstructor.urlConstructor[3].apiKey;
+// proxy;
