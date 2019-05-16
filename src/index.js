@@ -1,23 +1,17 @@
 import "./styles/main.scss";
 import urlConstructor from "./config.json";
-import NewssourceSelectComponent from "./apiRequest.js";
+import ApiCall from "./apiRequest.js";
 
-let httpurl = `${urlConstructor.urlConstructor[0].apiURL}${
+let newsSourceURL = `${urlConstructor.urlConstructor[0].apiURL}${
   urlConstructor.urlConstructor[4].apiSources
 }${urlConstructor.urlConstructor[3].apiKey}`;
 
 const handler = {
-  get: function(obj, prop) {
-    if (prop === "api") {
-      const innerCall = new Proxy(obj, {
-        apply: function(target, thisarg, args) {
-          target.fetch(...args);
-        }
-      });
-      innerCall(httpurl);
-    }
+  apply: function(target, thisArg, argumentsList) {
+    console.log(`Function Logged: API`);
   }
 };
-const proxy = new Proxy(NewssourceSelectComponent, handler);
-proxy.api = "api";
-proxy.api;
+
+const proxy = new Proxy(ApiCall, handler);
+proxy();
+proxy.fetch(newsSourceURL);
