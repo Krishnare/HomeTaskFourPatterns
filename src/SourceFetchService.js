@@ -5,13 +5,13 @@ class intilizerClass {
     const newsBtn = document.getElementById("newsSource");
     newsBtn.addEventListener("change", () => {
       import(/* webpackChunkName: "lazyload" */ "./lazyload")
-      .then(module => {
-        const constructingLoad = module.default;
-        constructingLoad.constructingLoad();
-      })
-      .catch(function(error) {
-        ErrorPopupHandler.getInstance(error);
-      });
+        .then(module => {
+          const constructingLoad = module.default;
+          constructingLoad.constructingLoad();
+        })
+        .catch(function(error) {
+          ErrorPopupHandler.getInstance(error);
+        });
     });
   }
 }

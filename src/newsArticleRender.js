@@ -1,5 +1,5 @@
 export default class NewsArticleRender {
-  static renderHtml(data){
+  static renderHtml(data) {
     const elementId = document.getElementById("newsDetails");
     let returnHtml = "",
       uniqueVal = [];
