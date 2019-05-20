@@ -14,9 +14,8 @@ export default class lazyload {
       let selectCurrentVal = event.target.value;
       const apiArticleURL = urlConstructor.urlConstructor[2].apiArticleURL;
       const apiArticleKey = urlConstructor.urlConstructor[3].apiArticleKey;
-      const sourceId = selectCurrentVal;
 
-      const onSelectionApi = new Api(apiArticleURL, apiArticleKey, sourceId);
+      const onSelectionApi = new Api(apiArticleURL, apiArticleKey);
       const selectBoxProxy = new Proxy(onSelectionApi, handler);
         selectBoxProxy.get(selectCurrentVal).then(value => {
           NewsArticleRender.renderHtml(value);

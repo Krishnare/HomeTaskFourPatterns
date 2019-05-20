@@ -4,27 +4,22 @@ export default class Api {
   constructor(apiUrl, apiKey, sourceID) {
     this.apiUrl = apiUrl;
     this.apiKey = apiKey;
-    this.data = "";
-    this.sourceID = sourceID;
-    if (sourceID === undefined) {
-      this.sourceID = "";
-    }
-    this.url = `${this.apiUrl}${this.sourceID}${this.apiKey}`;
   }
   async request(url, method = "GET") {
     try {
-      let response = await fetch(this.url, { method });
+      let response = await fetch(`${url}`, { method });
       if (response.status === 200) {
-        this.data = await response.json();
+        const data = await response.json();
+        return data;
       } else {
-        await new ErrorPopupHandler().getInstance();
+        await ErrorPopupHandler.getInstance();
       }
-      return this.data;
     } catch (error) {
-      new ErrorPopupHandler().getInstance(error);
+      ErrorPopupHandler.getInstance(error);
     }
   }
   async get(url) {
-    return await this.request(url, "GET");
+    if (url === undefined) url = "";
+    return await this.request(`${this.apiUrl}${url}${this.apiKey}`, "GET");
   }
 }

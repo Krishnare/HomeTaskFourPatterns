@@ -17,6 +17,6 @@ const onloadApi = new Api(baseUrl, apiKey);
 export const onLoadProxy = new Proxy(onloadApi, handler);
 
 let fullUrl = baseUrl + apiKey;
-onLoadProxy.get(fullUrl).then(value => {
+onLoadProxy.get().then(value => {
   NewssourceSelectRender.renderHtml(value);
 });
