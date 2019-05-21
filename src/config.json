@@ -1,16 +1,13 @@
 {
   "urlConstructor": [
     {
-      "apiURL": "https://newsapi.org/v1/sources"
+      "apiURL": "https://newsapi.org/v1/sources?"
     },
     {
-      "apiKey": "?apiKey=17f37e44868945ee9d2434ca8881fa0a"
+      "apiKey": "apiKey=17f37e44868945ee9d2434ca8881fa0a"
     },
     {
       "apiArticleURL": "https://newsapi.org/v1/articles?source="
-    },
-    {
-      "apiArticleKey": "&apiKey=17f37e44868945ee9d2434ca8881fa0a"
     }
   ]
 }

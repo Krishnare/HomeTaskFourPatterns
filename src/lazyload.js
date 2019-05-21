@@ -11,9 +11,9 @@ export default class lazyload {
   static constructingLoad() {
     const sourceSelectBox = document.getElementById("newsSource");
     sourceSelectBox.addEventListener("change", event => {
-      let selectCurrentVal = event.target.value;
+      let selectCurrentVal = event.target.value+'&';
       const apiArticleURL = urlConstructor.urlConstructor[2].apiArticleURL;
-      const apiArticleKey = urlConstructor.urlConstructor[3].apiArticleKey;
+      const apiArticleKey = urlConstructor.urlConstructor[1].apiKey;
 
       const onSelectionApi = new Api(apiArticleURL, apiArticleKey);
       const selectBoxProxy = new Proxy(onSelectionApi, handler);
