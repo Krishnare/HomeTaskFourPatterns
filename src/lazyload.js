@@ -1,10 +1,6 @@
 import Api from "./sourceFetch";
-import SourceFetch from "./sourceFetch.js";
 import urlConstructor from "./config.json";
-import errorPopupHandler from "./errorHandler.js";
-import NewssourceSelectComponent from "./apiRequest.js";
 import NewsArticleRender from "./newsArticleRender";
-
 import {onLoadProxy, handler } from "./index";
 
 export default class lazyload {
